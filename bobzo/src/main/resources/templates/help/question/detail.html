@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>문의글 상세보기</title>
+</head>
+<body>
+<h1>문의글 상세보기</h1>
+<div>
+    <label>번호: </label>
+    <span th:text="${question.num}"></span>
+</div>
+<div>
+    <label>제목: </label>
+    <span th:text="${question.title}"></span>
+</div>
+<div>
+    <label>작성자: </label>
+    <span th:text="${question.fkUsers.nickName}"></span> <!-- Users 엔터티의 nickName 필드 -->
+</div>
+<div>
+    <label>작성일: </label>
+    <span th:text="${#dates.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></span>
+</div>
+<div>
+    <label>내용: </label>
+    <p th:text="${question.content}"></p>
+</div>
+<a href="/help/question/question">목록으로</a>
+</body>
+</html>
