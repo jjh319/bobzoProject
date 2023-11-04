@@ -45,7 +45,7 @@ public class QuestionController {
         List<Question> questions = questionService.getAllQuestionOrderedByQuestionNumberDesc();
         model.addAttribute("questions", questions);
 
-        return "/help/question/question";
+        return "help/question/question";
     } // questionList
 
 
@@ -54,7 +54,7 @@ public class QuestionController {
 
         model.addAttribute("questionDTO", new QuestionDTO());
 
-        return "/help/question/register";
+        return "help/question/register";
     } // write
 
     @PostMapping("/question/createQuestion")
@@ -73,7 +73,7 @@ public class QuestionController {
         Question question = this.questionService.getQuestionByNum(num);
         model.addAttribute("question", question);
 
-        return "/help/question/detail";
+        return "help/question/detail";
     } // questionDetail
 
 
