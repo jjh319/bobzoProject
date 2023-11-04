@@ -13,7 +13,7 @@ import java.util.List;
 
 @Data
 @Log4j2
-@ToString(exclude = {"recipeListUsers", "commentsListUsers", "ReportListUsers"})
+@ToString(exclude = {"recipeListUsers", "commentsListUsers", "ReportListUsers", "QuestionListUsers"})
 
 
 @Entity
