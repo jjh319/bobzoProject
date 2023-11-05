@@ -84,8 +84,8 @@ public class QuestionServiceImpl implements QuestionService{
     } // getQuestionByNum
 
     @Override
-    public List<Question> getAllQuestionOrderedByQuestionNumberDesc() {
-        return questionRepo.findAllByOrderByQuestionNumberDesc();
+    public List<Question> getFindAllByOrderByCreateDateDesc() {
+        return questionRepo.findAllByOrderByCreateDateDesc();
 
     } // getAllQuestionOrderedByQuestionNumberDesc
 

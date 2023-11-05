@@ -13,7 +13,7 @@ import java.util.List;
 public interface QuestionRepository extends JpaRepository<Question, Long> {
 
     List<Question> findByFkUsers(Users users);
-    List<Question> findAllByOrderByQuestionNumberDesc();
+    List<Question> findAllByOrderByCreateDateDesc();
 
     @Query("SELECT MAX(q.num) FROM Question q")
     Integer findHighestQuestionNumber();

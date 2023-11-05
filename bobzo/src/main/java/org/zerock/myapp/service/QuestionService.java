@@ -18,7 +18,7 @@ public interface QuestionService {
 
     public abstract Question getQuestionByNum(Long num);
 
-    public abstract List<Question> getAllQuestionOrderedByQuestionNumberDesc();
+    public abstract List<Question> getFindAllByOrderByCreateDateDesc();
 
     public abstract Integer findHighestQuestionNumber();
 

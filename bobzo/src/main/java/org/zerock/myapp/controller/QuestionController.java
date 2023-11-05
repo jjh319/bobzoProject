@@ -42,7 +42,7 @@ public class QuestionController {
     @GetMapping("/question/question")
     public String questionList(Model model) {
 
-        List<Question> questions = questionService.getAllQuestionOrderedByQuestionNumberDesc();
+        List<Question> questions = questionService.getFindAllByOrderByCreateDateDesc();
         model.addAttribute("questions", questions);
 
         return "help/question/question";
