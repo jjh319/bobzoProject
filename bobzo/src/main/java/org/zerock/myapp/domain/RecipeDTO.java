@@ -7,7 +7,7 @@ import java.util.List;
 
 
 @Data
-public class RecipeDTO {
+public class RecipeDTO { // -> 자바 빈즈 객체다, 의존성 뭐시기 다된다.
     private Long num;
     private Long writer;
     private String title;
@@ -18,7 +18,6 @@ public class RecipeDTO {
     private Date processedDate;
     private ReportStatus reportStatus = ReportStatus.REPORT_NOTRECEIVED;
     private Integer enabled = 1;
-    private Integer recipeNumber;
     private Integer cnt = 0;
 
 

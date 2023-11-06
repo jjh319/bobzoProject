@@ -5,16 +5,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.zerock.myapp.domain.Question;
 import org.zerock.myapp.domain.QuestionDTO;
 import org.zerock.myapp.domain.Users;
-import org.zerock.myapp.exception.UserNotLoggedInException;
 import org.zerock.myapp.repository.QuestionRepository;
 
 import java.util.List;

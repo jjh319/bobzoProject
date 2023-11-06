@@ -8,6 +8,10 @@ public interface UsersService {
 
     public abstract Users getUserById(String userId);
 
-    public abstract boolean existsByUserId(String id);
+    //-------- <회원가입> 중복검사 ------------------
+    public abstract boolean existsByUserInfo(String value, String keyWord);
+//    public abstract boolean existsByNickName(String id);
+//    public abstract boolean existsByEmail(String id);
+    //-----------------------------------------------
 
 } // end interface

@@ -7,13 +7,14 @@ import lombok.extern.log4j.Log4j2;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Data
 @Log4j2
-@ToString(exclude = {"recipeListUsers", "commentsListUsers", "ReportListUsers", "QuestionListUsers"})
+@ToString(exclude = {"recipeListUsers", "commentsListUsers", "ReportListUsers"})
 
 
 @Entity
@@ -52,6 +53,9 @@ public class Users {
     @Column(nullable = false, unique = true, name = "ukEmail")
     private String email;
 
+    @Column(nullable = false)
+    private LocalDate birthdate;
+
 
     @OneToMany(
             targetEntity = Recipe.class,
@@ -78,6 +82,7 @@ public class Users {
             mappedBy = "fkUsers"
     )
     private List<Report> ReportListUsers = new ArrayList<>();
+
 
     @OneToMany(
             targetEntity = Question.class,

@@ -49,7 +49,7 @@ public class Recipe {
     private Categories Categories;
 
     @UpdateTimestamp
-    @Column(updatable = true, insertable = false)
+    @Column(updatable = true, insertable = true)
     private Date processedDate;
 
     @Enumerated(EnumType.STRING)
@@ -58,9 +58,9 @@ public class Recipe {
     @Column
     private Integer enabled = 1;
 
+
     private Integer cnt = 0;
 
-    private Integer recipeNumber;
 
 
 //    ====================================================================

@@ -12,5 +12,9 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 
     Optional<Users> findByUserId(String userId);
 
-    boolean existsByUserId(String id);
+    //-------- <회원가입> 중복검사 ------------------
+    boolean existsByUserId(String inputValue);
+    boolean existsByNickName(String inputValue);
+    boolean existsByEmail(String inputValue);
+    //-----------------------------------------------
 } // end interface

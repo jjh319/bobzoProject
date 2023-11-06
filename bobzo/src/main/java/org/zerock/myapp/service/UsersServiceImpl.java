@@ -29,6 +29,7 @@ public class UsersServiceImpl implements UsersService{
         Users users = new Users();
         users.setUserId(usersDTO.getUserId());
         users.setEmail(usersDTO.getEmail());
+        users.setBirthdate(usersDTO.getBirthdate());
 
         String rawPassword = usersDTO.getPassword();
         String encodedPassword = passwordEncoder.encode(rawPassword);
@@ -54,12 +55,20 @@ public class UsersServiceImpl implements UsersService{
 
 
     @Override
-    public boolean existsByUserId(String id) {
-        log.info("유저서비스 - 중복검사 Repository 진입");
+    public boolean existsByUserInfo(String value, String keyWord) {
+        log.info("☆★유저서비스☆★ - 중복검사 Repository 진입");
+        log.info("\t☆★ [유저서비스] key : {} ★☆", keyWord);
 
-        return !usersRepo.existsByUserId(id);
+        boolean result;
 
-//        return !this.usersRepo.existsByUserId(id);
+        switch (keyWord) {
+            case "id" -> result = !this.usersRepo.existsByUserId(value);
+            case "email" -> result = !this.usersRepo.existsByEmail(value);
+            case "nickName" -> result = !this.usersRepo.existsByNickName(value);
+            default -> result = false;
+        }
+        log.info("\t☆★ [유저서비스] key : {} ★☆", result);
+        return result;
     }
 
 

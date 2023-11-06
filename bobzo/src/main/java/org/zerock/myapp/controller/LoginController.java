@@ -25,7 +25,7 @@ public class LoginController {
         return "login/login";
     } // goLogin
 
-    @PostMapping("/login")
+    @PostMapping("/loginSuccess")
     String loginInfo(){
         log.trace("loginSuccess() Invoked.");
 
@@ -43,9 +43,7 @@ public class LoginController {
     public String adminLoginSuccess(){
         log.trace("adminLoginSuccess() invoked.");
 
-        return "/admin/main";
+        return "admin/main";
     }
-
-
 
 } // end class

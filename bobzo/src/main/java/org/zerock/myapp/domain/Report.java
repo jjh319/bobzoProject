@@ -23,9 +23,6 @@ public class Report {
     @SequenceGenerator(name = "reportNum", initialValue = 1, allocationSize = 1)
     private Long num;
 
-    @Column(nullable = false)
-    private String title;
-
     @Transient
     private Long writer;
 
@@ -101,7 +98,7 @@ public class Report {
     )
     @JoinColumn(
             name = "commentsNum",
-            nullable = true,
+            nullable = false,
             referencedColumnName = "commentsNum"
     )
     private Comments fkComments;

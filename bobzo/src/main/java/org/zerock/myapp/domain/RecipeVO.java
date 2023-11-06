@@ -17,7 +17,6 @@ public class RecipeVO {
     private Date processedDate;
     private ReportStatus reportStatus = ReportStatus.REPORT_NOTRECEIVED;
     private Integer enabled;
-    private Integer recipeNumber;
     private Integer cnt;
 
 

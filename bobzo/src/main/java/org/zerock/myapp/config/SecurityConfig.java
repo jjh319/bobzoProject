@@ -10,8 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.SessionManagementConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -77,26 +75,23 @@ public class SecurityConfig {
         http.authorizeHttpRequests(
                 customizer ->
                         customizer.requestMatchers(antMatcher("/main")).permitAll().
-                                requestMatchers(antMatcher("/recipe/recipe")).hasAnyRole("USER","ADMIN").
+                                requestMatchers(antMatcher("/recipe/page/1")).hasAnyRole("USER","ADMIN").
                                 requestMatchers(antMatcher("/help/help")).hasAnyRole("USER","ADMIN").
                                 requestMatchers(antMatcher("/admin/main")).hasRole("ADMIN").
                                 anyRequest().permitAll()
-        ).formLogin(
-                customizer -> customizer.loginPage("/login/login").
-                        loginProcessingUrl("/login/login").
-                        usernameParameter("userId").
-                        passwordParameter("password").
-                        defaultSuccessUrl("/main", true)
         ).formLogin(
                 customizer -> customizer.loginPage("/login/admin").
                         loginProcessingUrl("/login/admin").
                         usernameParameter("id").
                         passwordParameter("password").
                         defaultSuccessUrl("/main", true)
+        ).formLogin(
+                customizer -> customizer.loginPage("/login/login").
+                        loginProcessingUrl("/login/login").
+                        usernameParameter("userId").
+                        passwordParameter("password").
+                        defaultSuccessUrl("/main", true)
         );
-
-
-
 
 
 //      CSRF 공격은 웹 애플리케이션에서 사용자가 의도하지 않은 동작을 수행할 수 있는 보안 취약점을 이용한 공격
@@ -125,7 +120,6 @@ public class SecurityConfig {
 
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     } // passwordEncoder
-
 
 
 

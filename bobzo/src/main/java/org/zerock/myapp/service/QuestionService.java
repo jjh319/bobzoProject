@@ -1,8 +1,6 @@
 package org.zerock.myapp.service;
 
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.zerock.myapp.domain.Question;
 import org.zerock.myapp.domain.QuestionDTO;
 

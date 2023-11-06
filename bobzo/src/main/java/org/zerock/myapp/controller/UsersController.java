@@ -36,15 +36,18 @@ public class UsersController {
 
 
     @PostMapping("/checkDuplicate")
-    public ResponseEntity<String> checkDuplicate(String userId) {
+    public ResponseEntity<Boolean> checkDuplicate(String infoValue, String key) {
         log.trace("\t☆★ 중복체크 메소드 진입 ★☆");
+        log.trace("\t☆★ key : {} ★☆", key);
 
-        String result;
-        if (usersService.existsByUserId(userId)) {
-            result = "true"; // 사용 가능한 User ID
+        boolean result;
+
+        if (usersService.existsByUserInfo(infoValue, key)) {
+            result = true; // 사용 가능한 User ID
         } else {
-            result = "false"; // 이미 사용 중인 User ID
+            result = false; // 이미 사용 중인 User ID
         }
+        log.trace("\t☆★ 반환값 : {} ★☆", ResponseEntity.ok(result));
         return ResponseEntity.ok(result);
     }
 

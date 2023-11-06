@@ -7,6 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,5 +28,6 @@ public class UsersDTO {
     private Role role = Role.ROLE_USER;
     private Integer enabled = 1;
     private String email;
+    private LocalDate birthdate;
 
 } // end class
