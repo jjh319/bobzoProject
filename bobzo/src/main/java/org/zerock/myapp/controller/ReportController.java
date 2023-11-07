@@ -31,11 +31,6 @@ public class ReportController {
 
 
 
-//    @GetMapping("/report")
-//    void goReport(){
-//        log.trace("goReport() invoked.");
-//
-//    } // goReport
 
     @GetMapping("/help")
     void goHelp(){

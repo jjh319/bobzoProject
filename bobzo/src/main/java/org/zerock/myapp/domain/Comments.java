@@ -30,7 +30,7 @@ public class Comments {
     @Transient
     private Long recipe;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String comments;
 
     @Column(nullable = false, updatable = false)

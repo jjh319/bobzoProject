@@ -79,7 +79,8 @@ public class SecurityConfig {
                                 requestMatchers(antMatcher("/help/help")).hasAnyRole("USER","ADMIN").
                                 requestMatchers(antMatcher("/admin/main")).hasRole("ADMIN").
                                 anyRequest().permitAll()
-        ).formLogin(
+        ).
+                formLogin(
                 customizer -> customizer.loginPage("/login/admin").
                         loginProcessingUrl("/login/admin").
                         usernameParameter("id").
@@ -92,6 +93,9 @@ public class SecurityConfig {
                         passwordParameter("password").
                         defaultSuccessUrl("/main", true)
         );
+
+
+
 
 
 //      CSRF 공격은 웹 애플리케이션에서 사용자가 의도하지 않은 동작을 수행할 수 있는 보안 취약점을 이용한 공격
