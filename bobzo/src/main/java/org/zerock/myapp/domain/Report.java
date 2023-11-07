@@ -23,6 +23,7 @@ public class Report {
     @SequenceGenerator(name = "reportNum", initialValue = 1, allocationSize = 1)
     private Long num;
 
+
     @Transient
     private Long writer;
 
@@ -37,15 +38,24 @@ public class Report {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    private ReportCategory  reportCategory;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private ReportStatus reportStatus = ReportStatus.REPORT_RECEIVED;
 
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
-    private Date report_update;
+    private Date createDate;
 
     @Column(nullable = false)
     @UpdateTimestamp
     private Date report_process;
+
+    @Column(name = "REPORT_NUMBER")
+    private Integer reportNumber;
+
+
 
 
     @ManyToOne(
@@ -98,7 +108,7 @@ public class Report {
     )
     @JoinColumn(
             name = "commentsNum",
-            nullable = false,
+            nullable = true,
             referencedColumnName = "commentsNum"
     )
     private Comments fkComments;

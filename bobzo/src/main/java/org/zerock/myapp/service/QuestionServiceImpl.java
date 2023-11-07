@@ -81,7 +81,7 @@ public class QuestionServiceImpl implements QuestionService{
     public List<Question> getFindAllByOrderByCreateDateDesc() {
         return questionRepo.findAllByOrderByCreateDateDesc();
 
-    } // getAllQuestionOrderedByQuestionNumberDesc
+    } // getFindAllByOrderByCreateDateDesc
 
     @Override
     public Integer findHighestQuestionNumber() {

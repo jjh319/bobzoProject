@@ -9,8 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.zerock.myapp.domain.Report;
+import org.zerock.myapp.domain.ReportDTO;
+import org.zerock.myapp.service.ReportService;
 import org.zerock.myapp.service.ReportServiceImpl;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +27,7 @@ import java.util.Optional;
 public class ReportController {
 
     @Setter(onMethod_ = @Autowired)
-    private ReportServiceImpl reportService;
+    private ReportService reportService;
 
 
 
@@ -43,70 +46,45 @@ public class ReportController {
 
     @GetMapping("/report/report")
     public String listReports(Model model) {
-        List<Report> reports = reportService.getAllReports();
+        List<Report> reports = reportService.getFindAllByOrderByCreateDateDesc();
+
         model.addAttribute("reports",reports);
 
         return "/help/report/report";
     } // listReports
 
-    @GetMapping("/report/{id}")
-    public String viewReport(@PathVariable Long id, Model model) {
+    @GetMapping("/report/register")
+    public String write(Model model) {
+        model.addAttribute(("reportDTO"), new ReportDTO());
 
-        Optional<Report> optionalReport = reportService.getReport(id);
-        if(optionalReport.isPresent()) {
-            Report report = optionalReport.get();
-            model.addAttribute("report",report);
+        return "help/report/register";
+    } // write
 
-            return "/help/report/view";
+    @PostMapping("/report/createReport")
+    public String createReport(
+            @ModelAttribute("reportDTO") ReportDTO reportDTO, Principal principal,
+            @RequestParam(required = false) Long recipeNum,
+            @RequestParam(required = false) Long commentsNum
+            ) {
+
+        if(principal != null) {
+            String LoggedInUserId = principal.getName();
+
+            reportService.addReportWithCategoryAndReference(reportDTO,LoggedInUserId,recipeNum,commentsNum);
         } // if
 
-        return null;
-    } // viewReport
-
-    @GetMapping("/report/create")
-    public String createReportForm(Model model) {
-        model.addAttribute("report", new Report());
-
-        return "/help/report/create";
-    } // createReportForm
-
-    @PostMapping("/report/create")
-    public String createReport(@ModelAttribute Report report) {
-        reportService.createReport(report);
 
         return "redirect:/help/report/report";
+
     } // createReport
 
+    @GetMapping("/report/detail/{num}")
+    public String reportDetail(@PathVariable Long num, Model model) {
+        Report report = this.reportService.getReportByNum(num);
+        model.addAttribute("report", report);
 
-    @GetMapping("/report/{id}/edit")
-    public String editReportForm(@PathVariable Long id, Model model) {
-
-        Optional<Report> optionalReport = reportService.getReport(id);
-        if(optionalReport.isPresent()) {
-            Report report = optionalReport.get();
-            model.addAttribute("report", report);
-
-            return "/help/report/edit";
-        } // if
-
-
-        return null;
-    } // editReportForm
-
-    @PostMapping("/report/{id}/edit")
-    public String updateReport(@PathVariable Long id, @ModelAttribute Report report) {
-        reportService.updateReport(id,report);
-
-        return "redirect:/report";
-    } // updateReport
-
-
-    @GetMapping("/report/{id}/delete")
-    public String deleteReport(@PathVariable Long id) {
-        reportService.deleteReport(id);
-
-        return "redirect:/report";
-    } // deleteReport
+        return "help/report/detail";
+    } // reportDetail
 
 
 

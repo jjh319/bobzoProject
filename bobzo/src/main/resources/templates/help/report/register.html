@@ -2,75 +2,89 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>문의글 작성</title>
+    <title>신고글 작성</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f7f7f7;
+            background-color: #f4f4f4;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+
+            height: 100vh;
+        }
+
+        .container {
+            width: 1000px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         h1 {
             color: #333;
-            text-align: center;
+            margin-bottom: 20px;
         }
 
         form {
-            background-color: #fff;
-            max-width: 600px;
-            margin: 20px auto;
+            background: #fff;
             padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
         }
 
         label {
             display: block;
             margin-top: 20px;
+            color: #666;
         }
 
-        input[type="text"],
-        textarea {
-            width: calc(100% - 22px);
+        select, input[type=text], textarea {
+            width: 100%;
             padding: 10px;
             margin-top: 5px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            resize: none;
+            box-sizing: border-box; /* Adds padding without increasing the width */
         }
 
         textarea {
-
-            width: calc(100% - 22px);
-            height: 300px;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            resize: none;
+        width: 100%;
+        height: 200px; /* 또는 원하는 높이 값 */
+        resize: none; /* 크기 조절 비활성화 */
         }
 
         button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-top: 20px;
-            background-color: #007bff;
+            background-color: #5c6bc0;
             color: white;
+            padding: 10px 15px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            margin-top: 20px;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #3f51b5;
+        }
+
+        .button-inline {
+            background: none;
+            color: #5c6bc0;
+            padding: 0;
+            border: none;
+        }
+
+        .button-inline:hover {
+            color: #3f51b5;
         }
 
         a {
-            display: block;
-            text-align: center;
+            display: inline-block;
             margin-top: 20px;
-            color: #0077cc;
+            color: #5c6bc0;
             text-decoration: none;
         }
 
@@ -80,14 +94,37 @@
     </style>
 </head>
 <body>
-<h1>문의글 작성</h1>
-<form action="/help/question/createQuestion" method="post" th:object="${questionDTO}">
-    <label for="title">제목: </label>
-    <input type="text" id="title" name="title" th:field="*{title}" required/><br/>
-    <label for="content">내용: </label>
+<h1>신고글 작성</h1>
+<div class = "container">
+
+<form action="/help/report/createReport" method="post" th:object="${reportDTO}">
+    <label for="reportCategory">신고 유형:</label>
+    <select id="reportCategory" name="reportCategory" th:field="*{reportCategory}" required>
+        <option value="">-- 유형 선택 --</option>
+        <option th:each="category : ${T(org.zerock.myapp.domain.ReportCategory).values()}"
+                th:value="${category.name()}"
+                th:text="${category.getDescription()}">유형</option>
+    </select><br/>
+
+    <label for="targetId">신고할 대상 ID:</label>
+    <input type="text" id="targetId" name="targetId" required />
+    <button type="button" class="button-inline" onclick="searchTarget()">검색</button><br/>
+
+    <label for="content">내용:</label>
     <textarea id="content" name="content" th:field="*{content}" required></textarea><br/>
-    <button type="submit">문의하기</button>
+
+    <button type="submit">신고하기</button>
+    <a href="/help/report/report">목록으로</a>
 </form>
-<a href="/help/question/question">목록으로</a>
+
+</div>
+
+<script>
+    function searchTarget() {
+        var targetId = document.getElementById('targetId').value;
+
+    }
+</script>
+
 </body>
 </html>
