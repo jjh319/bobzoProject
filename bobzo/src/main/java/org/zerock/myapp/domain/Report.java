@@ -108,7 +108,7 @@ public class Report {
     )
     @JoinColumn(
             name = "commentsNum",
-            nullable = true,
+            nullable = false,
             referencedColumnName = "commentsNum"
     )
     private Comments fkComments;

@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 public class AdminsDTO {
     private Long num;
-    private String userId;
+    private String id;
     private String password;
     private String nickName;
     private Date createDate; // format

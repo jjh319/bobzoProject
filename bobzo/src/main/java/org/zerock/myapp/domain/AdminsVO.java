@@ -10,7 +10,7 @@ import java.util.Date;
 @Value
 public class AdminsVO {
     private Long num;
-    private String userId;
+    private String id;
     private String password;
     private String nickName;
     private Date createDate; // format
