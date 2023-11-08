@@ -94,7 +94,7 @@
         <td th:text="${report.fkUsers.nickName}"></td>
         <td th:text="${report.reportCategory}"></td>
         <td th:text="${#dates.format(report.createDate, 'yyyy-MM-dd HH:mm')}"></td>
-
+        <td th:text="${report.reportStatus}"></td>
         <td class="center"><a th:href="@{/help/report/detail/{num}(num=${report.num})}">상세보기</a></td>
     </tr>
     </tbody>
