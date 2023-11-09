@@ -5,92 +5,104 @@
     <title>게시판</title>
 
     <style>
-                /* 기본 리셋과 폰트 설정 */
-        body, h1, h2, a, table {
+        /* 기본 스타일 리셋 */
+        {
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
+            box-sizing: border-box;
         }
 
-        /* 바디와 기본 배경색 설정 */
+        /* 전체 폰트 설정 */
         body {
-            background-color: #4CAF50; /* 짙은 초록색 배경 */
-            color: #fff; /* 텍스트 색상을 흰색으로 설정 */
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
         }
 
-        /* 헤더 스타일링 */
-        h2 {
-            background-color: #3e8e41; /* 더 어두운 초록색으로 변경 */
-            padding: 10px;
-            margin-bottom: 20px; /* 간격 추가 */
-            text-align: center; /* 텍스트 가운데 정렬 */
-        }
-
+        /* 제목 스타일링 */
         h1 {
-            color: #fff; /* 제목 텍스트 색상을 흰색으로 설정 */
-            text-align: center; /* 제목 가운데 정렬 */
-            margin-bottom: 30px; /* 간격 추가 */
+            background-color: #ffffff;
+            color: #333;
+            padding: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         /* 테이블 스타일링 */
         table {
-            background: #fff; /* 테이블 배경색 */
-            color: #333; /* 테이블 내 텍스트 색상 */
-            border-radius: 10px; /* 테이블 둥글게 */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-            overflow: hidden; /* 둥근 모서리에서 내용이 넘침을 방지 */
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         th, td {
-            text-align: left; /* 텍스트 왼쪽 정렬 */
-            padding: 15px; /* 셀 패딩 */
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
         }
 
         th {
-            background-color: #3e8e41; /* 헤더 배경색 */
+            background-color: #ffffff;
+            color: #333;
         }
 
-        /* 링크 버튼 스타일링 */
+        td {
+            background-color: #ffffff;
+        }
+
+        /* 링크 스타일링 */
         a {
-            background-color: #3e8e41; /* 버튼 배경색 */
-            padding: 10px 20px;
-            color: white;
+            color: #5cb85c;
             text-decoration: none;
-            border-radius: 5px; /* 버튼 둥글게 */
-            transition: background-color 0.3s ease; /* 배경색 변화 애니메이션 */
         }
 
         a:hover {
-            background-color: #357a38; /* 호버 시 더 어두운 색으로 변경 */
+            text-decoration: underline;
+        }
+
+        /* 글쓰기 버튼 스타일링 */
+        a[href="/recipe/write"] {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        a[href="/recipe/write"]:hover {
+            background-color: #4cae4c;
         }
 
         /* 페이지네이션 스타일링 */
+        .pagination {
+            text-align: center;
+            padding: 20px;
+        }
+
         .pagination a {
-            padding: 5px 10px; /* 페이지네이션 버튼 패딩 */
-            margin: 0 5px; /* 페이지네이션 버튼 간격 */
-            background-color: #ddd; /* 페이지네이션 버튼 배경색 */
-            color: #333; /* 페이지네이션 버튼 텍스트 색상 */
+            background-color: #ddd;
+            color: #333;
+            padding: 5px 10px;
+            margin: 0 5px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s;
         }
 
+        .pagination a:hover,
         .pagination a.active {
-            background-color: #3e8e41; /* 현재 페이지 버튼 색상 */
+            background-color: #5cb85c;
             color: white;
-        }
-
-        .pagination a:hover {
-            background-color: #357a38; /* 호버 시 색상 */
         }
 
     </style>
 </head>
 <body>
-<h2>/recipe/page</h2>
-<hr>
 
-<h1>게시판 목록 보기</h1>
-
-
-
+<h1>게시판 목록 </h1>
 
 <table border="1">
 
@@ -138,19 +150,19 @@
 
 <script>
 
-    // 간단한 자바스크립트로 페이지네이션에서 현재 페이지를 강조하는 기능을 추가
-    document.addEventListener('DOMContentLoaded', function () {
-        // 현재 URL에서 페이지 번호를 추출
-        var currentPage = window.location.pathname.split('/').pop() || 1;
+    // 페이지네이션에 대한 간단한 자바스크립트 기능을 추가합니다.
+     document.addEventListener('DOMContentLoaded', function () {
+         // 페이지네이션 내의 현재 페이지에 'active' 클래스를 추가하여 스타일을 변경합니다.
+         const currentPageNumber = window.location.pathname.split('/').pop();
+         const paginationLinks = document.querySelectorAll('.pagination a');
 
-        // 모든 페이지네이션 링크를 찾아서 현재 페이지와 일치하면 클래스를 추가
-        var paginationLinks = document.querySelectorAll('.pagination a');
-        paginationLinks.forEach(function (link) {
-            if (link.textContent === currentPage) {
-                link.classList.add('active');
-            }
-        });
-    });
+         paginationLinks.forEach(function (link) {
+             if (link.innerText === currentPageNumber) {
+                 link.classList.add('active');
+             }
+         });
+     });
+
 
 </script>
 
