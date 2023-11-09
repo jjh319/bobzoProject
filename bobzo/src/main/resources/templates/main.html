@@ -33,43 +33,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메인</title>
     <style>
+                /* 메인 페이지 스타일링 */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #4CAF50; /* 초록색 계열의 배경색 */
-            color: #fff; /* 텍스트 색상을 흰색으로 설정 */
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #4CAF50; /* 숲속 느낌의 초록색 배경 */
+            color: white; /* 텍스트 색상은 흰색으로 설정 */
+            margin: 0;
+            padding: 0;
+            text-align: center; /* 내용을 중앙 정렬 */
         }
 
         h2 {
-            text-align: center;
+            background-color: #367c39; /* 머리글에 약간 어두운 초록색 사용 */
+            padding: 20px;
+            margin-bottom: 30px; /* 머리글 아래 여백 */
+            color: white;
         }
 
         hr {
-            border-color: #fff; /* 수평선 색상을 흰색으로 설정 */
+            max-width: 600px; /* 수평선의 최대 폭 설정 */
+            border: 0;
+            height: 1px;
+            background: #fff; /* 대조를 위한 흰색 수평선 */
+            margin: 0 auto 30px; /* 수평선을 중앙에 배치하고 아래에 여백 */
         }
 
         ul {
-            list-style: none; /* 리스트 마커 제거 */
+            list-style: none; /* 목록 스타일 없앰 */
             padding: 0;
-            text-align: center;
         }
 
         li {
-            margin: 10px 0;
+            margin: 15px 0; /* 각 목록 항목의 상하 여백 */
         }
 
         a {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #357935; /* 버튼 배경색 */
-            color: #fff;
-            text-decoration: none; /* 링크 밑줄 제거 */
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            background-color: #3e8e41; /* 링크 버튼에 사용될 배경색 */
+            color: white;
+            text-decoration: none; /* 밑줄 제거 */
+            border-radius: 5px; /* 둥근 모서리 효과 */
+            transition: background-color 0.3s; /* 배경색 변화에 애니메이션 효과 */
         }
 
         a:hover {
-            background-color: #255725; /* 마우스 호버 시 버튼 배경색 변경 */
+            background-color: #2e6b2e; /* 호버 시 배경색 변경 */
         }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            border: none; /* 테두리 제거 */
+            border-radius: 5px; /* 둥근 모서리 효과 */
+            background-color: #a9a9a9; /* 로그아웃 버튼에 회색 계열의 배경색 */
+            color: white;
+            margin-top: 20px; /* 위 여백 추가 */
+            cursor: pointer; /* 클릭 가능한 요소임을 나타내는 커서 모양 */
+            transition: background-color 0.3s; /* 배경색 변화에 애니메이션 효과 */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #808080; /* 호버 시 배경색 어두워짐 */
+        }
+
     </style>
 </head>
 <body>

@@ -5,46 +5,82 @@
     <title>게시판</title>
 
     <style>
+                /* 기본 리셋과 폰트 설정 */
+        body, h1, h2, a, table {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* 바디와 기본 배경색 설정 */
         body {
-            background-color: #4CAF50; /* 초록색 계열의 배경색 */
+            background-color: #4CAF50; /* 짙은 초록색 배경 */
             color: #fff; /* 텍스트 색상을 흰색으로 설정 */
-            font-family: Arial, sans-serif;
         }
+
+        /* 헤더 스타일링 */
         h2 {
-            color: white;
-            background-color: green;
+            background-color: #3e8e41; /* 더 어두운 초록색으로 변경 */
             padding: 10px;
+            margin-bottom: 20px; /* 간격 추가 */
+            text-align: center; /* 텍스트 가운데 정렬 */
         }
+
         h1 {
-            color: green;
+            color: #fff; /* 제목 텍스트 색상을 흰색으로 설정 */
+            text-align: center; /* 제목 가운데 정렬 */
+            margin-bottom: 30px; /* 간격 추가 */
         }
+
+        /* 테이블 스타일링 */
         table {
-            border-collapse: collapse;
-            width: 80%;
-            margin: 20px auto;
+            background: #fff; /* 테이블 배경색 */
+            color: #333; /* 테이블 내 텍스트 색상 */
+            border-radius: 10px; /* 테이블 둥글게 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+            overflow: hidden; /* 둥근 모서리에서 내용이 넘침을 방지 */
         }
-        table, th, td {
-            border: 1px solid green;
-        }
+
         th, td {
-            padding: 10px;
-            text-align: center;
+            text-align: left; /* 텍스트 왼쪽 정렬 */
+            padding: 15px; /* 셀 패딩 */
         }
+
         th {
-            background-color: green;
-            color: white;
+            background-color: #3e8e41; /* 헤더 배경색 */
         }
+
+        /* 링크 버튼 스타일링 */
         a {
-            display: inline-block;
+            background-color: #3e8e41; /* 버튼 배경색 */
             padding: 10px 20px;
-            background-color: green;
             color: white;
             text-decoration: none;
-            margin: 20px;
+            border-radius: 5px; /* 버튼 둥글게 */
+            transition: background-color 0.3s ease; /* 배경색 변화 애니메이션 */
         }
+
         a:hover {
-            background-color: darkgreen;
+            background-color: #357a38; /* 호버 시 더 어두운 색으로 변경 */
         }
+
+        /* 페이지네이션 스타일링 */
+        .pagination a {
+            padding: 5px 10px; /* 페이지네이션 버튼 패딩 */
+            margin: 0 5px; /* 페이지네이션 버튼 간격 */
+            background-color: #ddd; /* 페이지네이션 버튼 배경색 */
+            color: #333; /* 페이지네이션 버튼 텍스트 색상 */
+        }
+
+        .pagination a.active {
+            background-color: #3e8e41; /* 현재 페이지 버튼 색상 */
+            color: white;
+        }
+
+        .pagination a:hover {
+            background-color: #357a38; /* 호버 시 색상 */
+        }
+
     </style>
 </head>
 <body>
@@ -98,9 +134,25 @@
     </span>
 </div>
 
-
-
-
 <a href="/recipe/write">글쓰기</a>
+
+<script>
+
+    // 간단한 자바스크립트로 페이지네이션에서 현재 페이지를 강조하는 기능을 추가
+    document.addEventListener('DOMContentLoaded', function () {
+        // 현재 URL에서 페이지 번호를 추출
+        var currentPage = window.location.pathname.split('/').pop() || 1;
+
+        // 모든 페이지네이션 링크를 찾아서 현재 페이지와 일치하면 클래스를 추가
+        var paginationLinks = document.querySelectorAll('.pagination a');
+        paginationLinks.forEach(function (link) {
+            if (link.textContent === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+</script>
+
 </body>
 </html>
