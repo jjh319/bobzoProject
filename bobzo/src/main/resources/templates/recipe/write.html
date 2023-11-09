@@ -3,6 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>게시판</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Adds padding without increasing the width */
+            resize: none;
+        }
+
+        textarea {
+            width: 100;
+            height: 250px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        button {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .cancel-button {
+            background-color: #f44336;
+            margin-left: 5px;
+        }
+        .cancel-button:hover {
+            background-color: #d32f2f;
+        }
+        hr {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 0;
+            border-top: 1px solid #eee;
+        }
+    </style>
 </head>
 <body>
 <h2>/recipe/write</h2>
@@ -21,11 +84,9 @@
     <button type="submit">글 작성</button>
 </form>
 
-    <form action="/recipe/page/1" method="get">
-        <button type="submit">취소</button>
-    </form>
-
-</div>
+<form action="/recipe/page/1" method="get">
+    <button type="submit" class="cancel-button">취소</button>
+</form>
 
 </body>
 </html>

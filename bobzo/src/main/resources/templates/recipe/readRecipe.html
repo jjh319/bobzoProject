@@ -3,6 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>게시글 상세 페이지</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        h1, p {
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            background: #fff;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        textarea {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: none;
+        }
+        input[type="submit"], button {
+            background: #5cb85c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        input[type="submit"]:hover, button:hover {
+            background: #4cae4c;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 <h1>게시글 상세 내용</h1>
@@ -42,5 +98,20 @@
     <textarea name="comment" rows="4" cols="50"></textarea>
     <input type="submit" value="댓글 추가">
 </form>
+
+<script>
+    // Example JavaScript to handle comment deletion without page reload
+    document.addEventListener('DOMContentLoaded', function () {
+        var deleteButtons = document.querySelectorAll('form[action*="deleteComment"]');
+        deleteButtons.forEach(function (button) {
+            button.onsubmit = function (event) {
+                event.preventDefault();
+                var action = this.getAttribute('action');
+                // Add AJAX request to delete comment here
+                console.log('Delete comment with action:', action);
+            };
+        });
+    });
+</script>
 </body>
 </html>
