@@ -4,6 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
+
+    <style>
+
+                /* 전체 페이지의 기본 스타일을 설정 */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 회원가입 컨테이너의 스타일을 설정 */
+        .signup-container {
+            background-color: white;
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 폼 내부 요소의 스타일을 설정 */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 라벨의 스타일을 설정합니다. */
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        /* 인풋 필드의 스타일을 설정 */
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="date"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        /* 버튼의 스타일을 설정*/
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #5cb85c;
+            color: white;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        button:disabled {
+            background-color: #cccccc;
+            cursor: default;
+        }
+
+        /* 중복 확인 결과 메시지의 스타일을 설정 */
+        .result-class {
+            margin-top: 5px;
+        }
+
+        /* 회원가입 버튼의 스타일을 설정 */
+        #submitBtn {
+            background-color: #337ab7;
+        }
+
+        /* 비밀번호 일치/불일치 메시지의 스타일을 설정 */
+        #passwordMatchMessage {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+    </style>
+
 </head>
 <body>
 <div class="signup-container">

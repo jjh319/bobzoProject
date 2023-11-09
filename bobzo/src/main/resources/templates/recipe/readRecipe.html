@@ -100,18 +100,47 @@
 </form>
 
 <script>
-    // Example JavaScript to handle comment deletion without page reload
     document.addEventListener('DOMContentLoaded', function () {
-        var deleteButtons = document.querySelectorAll('form[action*="deleteComment"]');
-        deleteButtons.forEach(function (button) {
-            button.onsubmit = function (event) {
-                event.preventDefault();
-                var action = this.getAttribute('action');
-                // Add AJAX request to delete comment here
-                console.log('Delete comment with action:', action);
+    var deleteButtons = document.querySelectorAll('form[action*="deleteComment"]');
+    deleteButtons.forEach(function (form) {
+        form.onsubmit = function (event) {
+            event.preventDefault(); // 폼의 기본 제출 동작을 방지합니다.
+            var action = this.getAttribute('action');
+
+            // XMLHttpRequest 객체를 생성합니다.
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', action, true); // POST 메서드와 해당 액션 URL을 사용하여 요청을 설정합니다.
+
+            // CSRF 토큰 등 필요한 경우 헤더 설정을 추가할 수 있습니다.
+            // xhr.setRequestHeader('X-CSRF-TOKEN', 'your-csrf-token-here');
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // 요청이 성공적으로 완료되었을 때 수행할 동작을 정의합니다.
+                    // 예를 들어, 삭제된 댓글을 DOM에서 제거할 수 있습니다.
+                    console.log('Comment deleted successfully');
+                    form.closest('li').remove(); // 삭제 버튼이 있는 <li> 요소를 제거합니다.
+                } else {
+                    // 요청이 실패했을 때 오류 처리를 정의합니다.
+                    console.error('Error deleting comment:', xhr.statusText);
+                }
             };
-        });
+
+            xhr.onerror = function () {
+                // 네트워크 오류가 발생했을 때 오류 처리를 정의합니다.
+                console.error('Network error occurred');
+            };
+
+            // 요청 본문에 전송할 데이터를 FormData 객체를 사용하여 설정합니다.
+            // 이 부분은 폼에 다른 필드가 있는 경우에 맞게 수정할 수 있습니다.
+            var formData = new FormData(form);
+
+            // 요청을 전송합니다.
+            xhr.send(formData);
+        };
     });
+});
+
 </script>
 </body>
 </html>
