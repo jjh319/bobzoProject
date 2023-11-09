@@ -123,13 +123,13 @@ public class ReportServiceImpl implements ReportService{
         } // if
 
         //댓글 번호가 제공되면, 댓글과 연관지음
-        if(commentsNum != null) {
-            Comments comments = (Comments) commentsService.getAllComments(commentsNum);
-            if(comments != null) {
-                report.setFkComments(comments);
-            } // inner if
-
-        } // if
+//        if(commentsNum != null) {
+//            Comments comments = (Comments) commentsService.getAllComments(commentsNum);
+//            if(comments != null) {
+//                report.setFkComments(comments);
+//            } // inner if
+//
+//        } // if
 
         reportRepo.save(report);
 

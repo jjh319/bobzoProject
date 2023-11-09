@@ -6,10 +6,14 @@ import org.zerock.myapp.domain.Recipe;
 import java.util.List;
 
 public interface CommentsService {
+
     List<Comments> getCommentsByRecipe(Recipe recipe);
     void addComment(Comments comment);
+    List<Comments> getCommentsWithUsersByRecipe(Recipe recipe);
+    void updateComment(Long commentId, String commentContent);
+    Comments getCommentById(Long commentId);
 
-    Comments getCommentById(Long id);
-    List<Comments> getAllComments(Long commentsNum);
+    // 댓글 삭제
+    void deleteComment(Long commentId);
 
 } // CommentsService

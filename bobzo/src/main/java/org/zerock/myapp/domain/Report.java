@@ -87,7 +87,7 @@ public class Report {
     )
     @JoinColumn(
             name = "recipeNum",
-            nullable = false,
+            nullable = true,
             referencedColumnName = "recipeNum"
     )
     private Recipe fkRecipe;
@@ -108,7 +108,7 @@ public class Report {
     )
     @JoinColumn(
             name = "commentsNum",
-            nullable = false,
+            nullable = true,
             referencedColumnName = "commentsNum"
     )
     private Comments fkComments;

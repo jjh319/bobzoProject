@@ -1,13 +1,17 @@
 package org.zerock.myapp.service;
 
 import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.zerock.myapp.domain.Comments;
 import org.zerock.myapp.domain.Recipe;
 import org.zerock.myapp.repository.CommentsRepository;
 
 import java.util.List;
+
+@Log4j2
 
 @Service
 public class CommentsServiceImpl implements CommentsService{
@@ -28,15 +32,29 @@ public class CommentsServiceImpl implements CommentsService{
     } // addComment
 
     @Override
-    public Comments getCommentById(Long id) {
-        return commentsRepo.findById(id).orElse(null);
-    } // getCommentById
+    public List<Comments> getCommentsWithUsersByRecipe(Recipe recipe) {
+        return commentsRepo.findCommentsWithUsersByRecipe(recipe);
+    } // getCommentsWithUsersByRecipe
+
+    @Transactional
+    @Override
+    public void updateComment(Long commentId, String commentContent) {
+        commentsRepo.updateComment(commentId, commentContent);
+    } // updateCommnet
+
 
     @Override
-    public List<Comments> getAllComments(Long commentsNum) {
+    public Comments getCommentById(Long commentId) {
+        return commentsRepo.findById(commentId).orElse(null);
+    } // getCommentById
 
-        return commentsRepo.findAll();
-    } // getAllComments
+    @Transactional
+    @Override
+    public void deleteComment(Long commentId) {
+        log.trace("deleteComment({}) invoked.", commentId);
+
+        commentsRepo.deleteCommentById(commentId);
+    } // deleteComment
 
 
 } // CommentsServiceImpl

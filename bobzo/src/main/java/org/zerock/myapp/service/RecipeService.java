@@ -15,5 +15,6 @@ public interface RecipeService {
     public abstract Page<Recipe> getPagedRecipes(Pageable pageable);
     public abstract Recipe getRecipeByNum(Long num);
     public abstract void updateViewCount(Long num);
+    public abstract void updateRecipe(Recipe recipe);
 
 } // end interface

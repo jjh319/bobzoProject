@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form th:object="${recipe}" th:action="@{'/recipe/modifyRecipe/' + recipe.num}" method="post">
+        <input type="hidden" th:field="*{num}" />
+        <label for="title">제목:</label>
+        <input type="text" id="title" th:field="*{title}" />
+        <br />
+        <label for="content">내용:</label>
+        <textarea id="content" th:field="*{content}"></textarea>
+        <br />
+        <label>카테고리:</label>
+        <input type="radio" name="categories" value="KoreanFood" th:field="*{fkCategories.name}"> KoreanFood
+        <input type="radio" name="categories" value="ChineseFood" th:field="*{fkCategories.name}"> ChineseFood
+        <input type="radio" name="categories" value="JapanFood" th:field="*{fkCategories.name}"> JapanFood
+        <input type="radio" name="categories" value="WesternFood" th:field="*{fkCategories.name}"> WesternFood
+        <br>
+        <button type="submit">레시피 업데이트</button>
+    </form>
+</body>
+</html>
