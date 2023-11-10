@@ -8,10 +8,11 @@ public interface UsersService {
 
     public abstract Users getUserById(String userId);
 
-    //-------- <회원가입> 중복검사 ------------------
+    // 회원정보 수정시 회원정보객체 들고오는 기능
+    public abstract UsersDTO getUserDTOByUserId(String username);
+
+    // 회원가입 중복검사
     public abstract boolean existsByUserInfo(String value, String keyWord);
-//    public abstract boolean existsByNickName(String id);
-//    public abstract boolean existsByEmail(String id);
-    //-----------------------------------------------
+
 
 } // end interface

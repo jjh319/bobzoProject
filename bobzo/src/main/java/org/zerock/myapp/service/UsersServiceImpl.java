@@ -55,6 +55,22 @@ public class UsersServiceImpl implements UsersService{
 
 
     @Override
+    public UsersDTO getUserDTOByUserId(String username) {
+        log.info("☆★ getUserByUsername 진입 ☆★");
+        Optional<Users> userOptional = usersRepo.findByUserId(username);
+
+        return userOptional.map(user -> {
+            UsersDTO usersDTO = new UsersDTO();
+            usersDTO.setUserId(user.getUserId());
+            usersDTO.setNickName(user.getNickName());
+            usersDTO.setBirthdate(user.getBirthdate());
+            usersDTO.setEmail(user.getEmail());
+
+            return usersDTO;
+        }).orElse(null);
+    } // getUserDTOByUserId
+
+    @Override
     public boolean existsByUserInfo(String value, String keyWord) {
         log.info("☆★유저서비스☆★ - 중복검사 Repository 진입");
         log.info("\t☆★ [유저서비스] key : {} ★☆", keyWord);
@@ -69,7 +85,7 @@ public class UsersServiceImpl implements UsersService{
         }
         log.info("\t☆★ [유저서비스] key : {} ★☆", result);
         return result;
-    }
+    } // existsByUserInfo
 
 
 } // end class

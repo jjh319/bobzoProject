@@ -45,6 +45,12 @@ public class MainController {
 
     } // main2
 
+    @GetMapping("mypage")
+    public void mypage(){
+        log.trace("mypage() Invoked.");
+    }
+
+
 //    ====================================================================================================
 //              여기서 Category 매핑합니다. 카테고리 초기화됐으면 실행시 이거 한번 URI 호출 하면 카테고리에 값이 들어갑니다.!
 ////

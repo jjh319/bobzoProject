@@ -78,6 +78,7 @@ public class SecurityConfig {
                                 requestMatchers(antMatcher("/recipe/page/1")).hasAnyRole("USER","ADMIN").
                                 requestMatchers(antMatcher("/help/help")).hasAnyRole("USER","ADMIN").
                                 requestMatchers(antMatcher("/admin/main")).hasRole("ADMIN").
+                                requestMatchers(antMatcher("/mypage/**")).hasAnyRole("USER","ADMIN").
                                 anyRequest().permitAll()
         ).
                 formLogin(
