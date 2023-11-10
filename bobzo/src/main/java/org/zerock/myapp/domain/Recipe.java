@@ -92,9 +92,9 @@ public class Recipe {
             optional = false
     )
     @JoinColumn(
-            name = "CategoriesSeq",
+            name = "Categories_Seq",
             nullable = true,
-            referencedColumnName = "CategoriesSeq"
+            referencedColumnName = "Categories_Seq"
     )
     private Categories fkCategories;
 

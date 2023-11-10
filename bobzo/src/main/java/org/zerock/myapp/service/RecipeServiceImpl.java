@@ -58,8 +58,17 @@ public class RecipeServiceImpl implements RecipeService{
         recipe.setFkUsers(loggedInUserId);
 
         // 카테고리 처리
+        log.info("------------recipeDTO");
+        log.info(recipeDTO);
         String selectedCategoryName = recipeDTO.getCategories();
+        log.info("------------selectedCategoryName");
+        log.info(selectedCategoryName);
         Categories selectedCategories = categoriesService.getCategoryByName(selectedCategoryName);
+        log.info("------------categoriesService");
+        log.info(categoriesService);
+
+        log.info("------------selectedCategories");
+        log.info(selectedCategories);
 
         if(selectedCategories != null){
             recipe.setFkCategories(selectedCategories);
@@ -67,7 +76,9 @@ public class RecipeServiceImpl implements RecipeService{
             // processedDate를 현재 시간으로 설정
             recipe.setProcessedDate(new Date());
             recipeRepo.save(recipe);
-
+            log.info("--------------------------------");
+            log.info(recipe);
+            log.info("--------------------------------");
         } // end class
 
 
@@ -106,5 +117,14 @@ public class RecipeServiceImpl implements RecipeService{
     public void updateRecipe(Recipe recipe) {
         recipeRepo.save(recipe);
     } // updateRecipe
+
+
+    @Override
+    public List<Recipe> searchRecipesByKeyword(String keyword) {
+
+
+        return recipeRepo.findByTitleContainingIgnoreCase(keyword);
+
+    } // searchRecipesByKeyword
 
 } // end class

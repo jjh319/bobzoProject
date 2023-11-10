@@ -27,4 +27,8 @@ public interface CommentsRepository extends JpaRepository<Comments, Long> {
     @Modifying
     @Query("DELETE FROM Comments c WHERE c.num = :commentId")
     void deleteCommentById(@Param("commentId") Long commentId);
+
+    // 내용에서 키워드를 포함하는 댓글 검색 메서드
+    List<Comments> findByContentContainingIgnoreCase(String comments);
+
 } // end interface

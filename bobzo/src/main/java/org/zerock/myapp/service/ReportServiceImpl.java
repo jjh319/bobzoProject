@@ -10,10 +10,8 @@ import org.springframework.stereotype.Service;
 import org.zerock.myapp.domain.*;
 import org.zerock.myapp.repository.ReportRepository;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Log4j2
@@ -123,16 +121,45 @@ public class ReportServiceImpl implements ReportService{
         } // if
 
         //댓글 번호가 제공되면, 댓글과 연관지음
-//        if(commentsNum != null) {
-//            Comments comments = (Comments) commentsService.getAllComments(commentsNum);
-//            if(comments != null) {
-//                report.setFkComments(comments);
-//            } // inner if
-//
-//        } // if
+        if(commentsNum != null) {
+            Comments comments = (Comments) commentsService.getCommentById(commentsNum);
+            if(comments != null) {
+                report.setFkComments(comments);
+            } // inner if
+
+        } // if
 
         reportRepo.save(report);
 
     } // addReportWithCategoryAndReference
+
+    @Override
+    public List<SearchResultDTO> searchRecipeByKeyword(String keyword) {
+        List<Recipe> recipes = recipeService.searchRecipesByKeyword(keyword);
+
+        return recipes.stream().
+                map(recipe -> new SearchResultDTO(
+                        recipe.getNum(),
+                        recipe.getTitle(),
+                        recipe.getContent(),
+                        "recipe"
+                )).collect(Collectors.toList());
+
+    } // searchRecipeByKeyword
+
+    @Override
+    public List<SearchCommentDTO> searchCommentsByKeyword(String keyword) {
+        List<Comments> comments = commentsService.searchCommentsByKeyword(keyword);
+
+        return comments.stream().
+                map(comment -> new SearchCommentDTO(
+                        comment.getNum(),
+                        comment.getFkUsers().getNickName(),
+                        comment.getComments(),
+                        "comment"
+                )).collect(Collectors.toList());
+
+    } // searchCommentsByKeyword
+
 
 } // end class

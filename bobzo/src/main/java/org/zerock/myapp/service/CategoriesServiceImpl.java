@@ -2,12 +2,14 @@ package org.zerock.myapp.service;
 
 
 import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.zerock.myapp.domain.Categories;
 import org.zerock.myapp.repository.CategoriesRepository;
 
+@Log4j2
 
 @Service
 public class CategoriesServiceImpl implements CategoriesService {
@@ -40,6 +42,10 @@ public class CategoriesServiceImpl implements CategoriesService {
 
     @Override
     public Categories getCategoryByName(String name) {
+
+        log.info("---------------name");
+        log.info(name);
+        log.info("---------------name");
         return CategoriesRepo.findByName(name);
     }
 } // end class

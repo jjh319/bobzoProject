@@ -16,10 +16,10 @@ import java.util.List;
 @Entity
 public class Categories {
     @Id
-    @Column(name = "CategoriesSeq")
+    @Column(name = "Categories_Seq")
     @SequenceGenerator(
             name = "CategoriesGenerator",
-            sequenceName = "CategoriesSeq",
+            sequenceName = "Categories_Seq",
             initialValue = 1,
             allocationSize = 1)
     @GeneratedValue(

@@ -17,4 +17,7 @@ public interface RecipeService {
     public abstract void updateViewCount(Long num);
     public abstract void updateRecipe(Recipe recipe);
 
+    //키워드로 레시피 검색 메서드
+    List<Recipe> searchRecipesByKeyword(String keyword);
+
 } // end interface

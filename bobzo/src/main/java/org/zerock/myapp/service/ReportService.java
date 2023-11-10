@@ -3,6 +3,8 @@ package org.zerock.myapp.service;
 
 import org.zerock.myapp.domain.Report;
 import org.zerock.myapp.domain.ReportDTO;
+import org.zerock.myapp.domain.SearchCommentDTO;
+import org.zerock.myapp.domain.SearchResultDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -23,5 +25,9 @@ public interface ReportService {
     public abstract Integer findHighestReportNumber();
 
     public abstract void addReportWithCategoryAndReference(ReportDTO reportDTO, String LoggedInUserId, Long recipeNum, Long commentsNum);
+
+    List<SearchResultDTO> searchRecipeByKeyword(String keyword);
+
+    List<SearchCommentDTO> searchCommentsByKeyword(String keyword);
 
 } // end interface

@@ -31,6 +31,12 @@ public class Comments {
     private Long recipe;
 
     @Column(nullable = true)
+    private String title;
+
+    @Column(nullable = false)
+    private String content;
+
+    @Column(nullable = true)
     private String comments;
 
     @Column(nullable = false, updatable = false)

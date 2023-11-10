@@ -16,4 +16,7 @@ public interface CommentsService {
     // 댓글 삭제
     void deleteComment(Long commentId);
 
+    // 키워드로 댓글 검색 메서드
+    List<Comments> searchCommentsByKeyword(String keyword);
+
 } // CommentsService

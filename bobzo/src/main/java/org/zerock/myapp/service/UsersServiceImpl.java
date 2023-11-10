@@ -9,6 +9,7 @@ import org.zerock.myapp.domain.Users;
 import org.zerock.myapp.domain.UsersDTO;
 import org.zerock.myapp.repository.UsersRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Log4j2
@@ -86,6 +87,13 @@ public class UsersServiceImpl implements UsersService{
         log.info("\t☆★ [유저서비스] key : {} ★☆", result);
         return result;
     } // existsByUserInfo
+
+    @Override
+    public List<Users> searchUsersById(String userId) {
+
+        return usersRepo.findByUserIdContaining(userId);
+
+    } // searchUsersById
 
 
 } // end class

@@ -56,5 +56,12 @@ public class CommentsServiceImpl implements CommentsService{
         commentsRepo.deleteCommentById(commentId);
     } // deleteComment
 
+    @Override
+    public List<Comments> searchCommentsByKeyword(String keyword) {
+
+        return commentsRepo.findByContentContainingIgnoreCase(keyword);
+
+    } // searchCommentsByKeyword
+
 
 } // CommentsServiceImpl

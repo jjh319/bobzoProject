@@ -20,4 +20,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long>{
     @Query("UPDATE Recipe r SET r.cnt = r.cnt + 1 WHERE r.num = :num")
     void updateViewCount(@Param("num") Long num);
 
+    // 제목에서 키워드를 포함하는 레시피 검색 메서드
+    List<Recipe> findByTitleContainingIgnoreCase(String title);
+
 } // end interface
