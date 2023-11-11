@@ -62,7 +62,7 @@ public class RecipeController {
         if(principal != null) {
             String loggedInUserId = principal.getName();
             recipeService.recipeWrite(recipeDTO, loggedInUserId);
-        }
+        } // if
 
         return "redirect:/recipe/page/1";
     } // updateRecipe

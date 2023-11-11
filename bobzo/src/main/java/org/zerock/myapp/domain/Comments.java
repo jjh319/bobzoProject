@@ -13,7 +13,8 @@ import java.util.List;
 
 @Data
 @Log4j2
-@ToString(exclude = {"fkUsers","fkRecipe", "ReportListComments"})
+@ToString(exclude = {"fkUsers","fkRecipe"})
+//"ReportListComments"
 
 @Entity
 @Table(name = "comments")
@@ -99,13 +100,13 @@ public class Comments {
         this.fkRecipe.getCommentsListRecipe().add(this);
     } // setRecipe
 
-    @OneToMany(
-            targetEntity = Report.class,
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            mappedBy = "fkComments"
-    )
-    private List<Report> ReportListComments = new ArrayList<>();
+//    @OneToMany(
+//            targetEntity = Report.class,
+//            fetch = FetchType.EAGER,
+//            cascade = CascadeType.ALL,
+//            mappedBy = "fkComments"
+//    )
+//    private List<Report> ReportListComments = new ArrayList<>();
 
 
 

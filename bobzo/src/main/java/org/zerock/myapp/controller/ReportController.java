@@ -64,7 +64,12 @@ public class ReportController {
     // 레시피 신고 생성 처리
     @PostMapping("/report/register/createReportRecipe")
     public String createReportForRecipe(@ModelAttribute("reportDTO") ReportDTO reportDTO, Principal principal) {
-        
+
+        if(principal != null) {
+            String loggedInUserId = principal.getName();
+            reportService.reportWrite(reportDTO, loggedInUserId);
+        } // if
+
 
         return "redirect:/help/report/report";
     } // createReportForRecipe
@@ -92,6 +97,12 @@ public class ReportController {
     //댓글 신고 생성 처리
     @PostMapping("report/register/createReportComment")
     public String createReportForComment(@ModelAttribute("reportDTO") ReportDTO reportDTO, Principal principal) {
+
+        if(principal != null) {
+            String loggedInUserId = principal.getName();
+            reportService.reportWrite(reportDTO, loggedInUserId);
+        } // if
+
 
 
         return "redirect:/help/report/report";

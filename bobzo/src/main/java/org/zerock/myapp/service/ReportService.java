@@ -24,10 +24,11 @@ public interface ReportService {
 
     public abstract Integer findHighestReportNumber();
 
-    public abstract void addReportWithCategoryAndReference(ReportDTO reportDTO, String LoggedInUserId, Long recipeNum, Long commentsNum);
 
     List<SearchResultDTO> searchRecipeByKeyword(String keyword);
 
     List<SearchCommentDTO> searchCommentsByKeyword(String keyword);
+
+
 
 } // end interface

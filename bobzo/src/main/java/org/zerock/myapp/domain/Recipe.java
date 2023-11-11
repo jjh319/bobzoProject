@@ -13,8 +13,9 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-@ToString(exclude = {"fkUsers", "fkCategories", "commentsListRecipe", "ReportListRecipe"})
+@ToString(exclude = {"fkUsers", "fkCategories", "commentsListRecipe"}) // "ReportListRecipe"
 @Log4j2
+
 
 @Entity
 @Table(name = "recipe")
@@ -93,7 +94,7 @@ public class Recipe {
     )
     @JoinColumn(
             name = "Categories_Seq",
-            nullable = true,
+            nullable = false,
             referencedColumnName = "Categories_Seq"
     )
     private Categories fkCategories;
@@ -114,13 +115,17 @@ public class Recipe {
     private List<Comments> commentsListRecipe = new ArrayList<>();
 
 
-    @OneToMany(
-            targetEntity = Report.class,
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            mappedBy = "fkRecipe"
-    )
-    private List<Report> ReportListRecipe = new ArrayList<>();
+
+
+
+
+//    @OneToMany(
+//            targetEntity = Report.class,
+//            fetch = FetchType.EAGER,
+//            cascade = CascadeType.ALL,
+//            mappedBy = "fkRecipe"
+//    )
+//    private List<Report> ReportListRecipe = new ArrayList<>();
 
 
 

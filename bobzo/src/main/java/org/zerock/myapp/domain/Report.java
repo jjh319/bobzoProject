@@ -11,8 +11,9 @@ import java.util.Date;
 
 @Log4j2
 @Data
-@ToString(exclude = {"fkUsers","fkRecipe","fkComments"})
-
+@ToString(exclude = {"fkUsers"})
+//"fkComments"
+//"fkRecipe"
 @Entity
 @Table(name = "report")
 public class Report {
@@ -27,11 +28,11 @@ public class Report {
     @Transient
     private Long writer;
 
-    @Transient
-    private Long comments;
-
-    @Transient
-    private Long recipe;
+//    @Transient
+//    private Long comments;
+//
+//    @Transient
+//    private Long recipe;
 
     @Column(nullable = false)
     private String content;
@@ -80,45 +81,43 @@ public class Report {
 
 
 
-    @ManyToOne(
-            targetEntity = Recipe.class,
-            fetch = FetchType.EAGER,
-            optional = false
-    )
-    @JoinColumn(
-            name = "recipeNum",
-            nullable = true,
-            referencedColumnName = "recipeNum"
-    )
-    private Recipe fkRecipe;
-
-    public void setRecipe(Recipe fkRecipe){
-        log.trace("Report_setRecipe({}) Invoked.", fkRecipe);
-        this.fkRecipe = fkRecipe;
-
-        this.fkRecipe.getReportListRecipe().add(this);
-    } // setRecipe
-
-
-
-    @ManyToOne(
-            targetEntity = Comments.class,
-            fetch = FetchType.EAGER,
-            optional = false
-    )
-    @JoinColumn(
-            name = "commentsNum",
-            nullable = true,
-            referencedColumnName = "commentsNum"
-    )
-    private Comments fkComments;
-
-    public void setComments(Comments fkComments){
-        log.trace("Comment_setRecipe({}) Invoked.", fkComments);
-        this.fkComments = fkComments;
-
-        this.fkComments.getReportListComments().add(this);
-    } // setRecipe
+//    @ManyToOne(
+//            targetEntity = Recipe.class,
+//            fetch = FetchType.EAGER,
+//            optional = false
+//    )
+//    @JoinColumn(
+//            name = "recipeNum",
+//            nullable = true,
+//            referencedColumnName = "recipeNum"
+//    )
+//    private Recipe fkRecipe;
+//
+//    public void setRecipe(Recipe fkRecipe){
+//        log.trace("Report_setRecipe({}) Invoked.", fkRecipe);
+//        this.fkRecipe = fkRecipe;
+//
+//        this.fkRecipe.getReportListRecipe().add(this);
+//    } // setRecipe
+//
+//    @ManyToOne(
+//            targetEntity = Comments.class,
+//            fetch = FetchType.EAGER,
+//            optional = false
+//    )
+//    @JoinColumn(
+//            name = "commentsNum",
+//            nullable = true,
+//            referencedColumnName = "commentsNum"
+//    )
+//    private Comments fkComments;
+//
+//    public void setComments(Comments fkComments){
+//        log.trace("Comment_setRecipe({}) Invoked.", fkComments);
+//        this.fkComments = fkComments;
+//
+//        this.fkComments.getReportListComments().add(this);
+//    } // setRecipe
 
 
 } // end class
