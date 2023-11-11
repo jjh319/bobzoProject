@@ -33,7 +33,7 @@ public class Comments {
     @Column(nullable = true)
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String content;
 
     @Column(nullable = true)
