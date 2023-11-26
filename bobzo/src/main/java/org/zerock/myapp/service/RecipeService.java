@@ -20,4 +20,10 @@ public interface RecipeService {
     //키워드로 레시피 검색 메서드
     List<Recipe> searchRecipesByKeyword(String keyword);
 
+    //    제목으로 검색 메서드
+    List<Recipe> searchRecipesByTitle(String title);
+
+    //    유저 아이디로 검색
+    List<Recipe> searchRecipesByUserId(String userId);
+
 } // end interface

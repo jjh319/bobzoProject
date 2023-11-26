@@ -233,4 +233,42 @@ public class RecipeController {
         return "redirect:/recipe/readRecipe/" + comment.getFkRecipe().getNum();
     }
 
+
+    @GetMapping("/searchByTitle")
+    public String searchByTitle(@RequestParam("title") String title, Model model) {
+        List<Recipe> recipes = recipeService.searchRecipesByTitle(title);
+        model.addAttribute("recipes", recipes);
+        return "recipe/page";
+    } // searchByTitle
+
+    @GetMapping("/searchByUserId")
+    public String searchByUserId(@RequestParam("userId") String userId, Model model) {
+        List<Recipe> recipes = recipeService.searchRecipesByUserId(userId);
+        model.addAttribute("recipes", recipes);
+        return "recipe/page";
+    } // searchByUserId
+
+
+    @GetMapping("/search")
+    public String searchRecipes(
+            @RequestParam(name = "type", defaultValue = "title") String type,
+            @RequestParam(name = "keyword") String keyword,
+            Model model
+    ) {
+        List<Recipe> recipes = Collections.emptyList();
+
+        switch (type) {
+            case "title":
+                recipes = recipeService.searchRecipesByTitle(keyword);
+                break;
+            case "userId":
+                recipes = recipeService.searchRecipesByUserId(keyword);
+                break;
+        }
+
+        model.addAttribute("recipes", recipes);
+        return "recipe/page";
+    } // searchRecipes
+
+
 } // end class

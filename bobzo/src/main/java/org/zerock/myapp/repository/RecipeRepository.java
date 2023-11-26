@@ -23,4 +23,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long>{
     // 제목에서 키워드를 포함하는 레시피 검색 메서드
     List<Recipe> findByTitleContainingIgnoreCase(String title);
 
+    List<Recipe> findByFkUsers_UserId(String userId);
+
 } // end interface

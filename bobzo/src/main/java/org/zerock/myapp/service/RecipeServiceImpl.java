@@ -127,4 +127,16 @@ public class RecipeServiceImpl implements RecipeService{
 
     } // searchRecipesByKeyword
 
+    @Override
+    public List<Recipe> searchRecipesByTitle(String title) {
+
+        return recipeRepo.findByTitleContainingIgnoreCase(title);
+    } // searchRecipesByTitle
+
+    @Override
+    public List<Recipe> searchRecipesByUserId(String userId) {
+
+        return recipeRepo.findByFkUsers_UserId(userId);
+    } // searchRecipesByUserId
+
 } // end class
